@@ -1,8 +1,6 @@
 pipeline {
     agent any
-    tools {
-        nodejs 'name_of_nodejs_installation'
-    }
+    
     stages {
         stage("Test") {
             steps {
