@@ -1,21 +1,30 @@
 pipeline {
     agent any
-    stages{
-        stage("checkout"){
-            steps{
+    stages {
+        stage("Checkout") {
+            steps {
                 checkout scm
             }
         }
 
-        stage("Test"){
-            steps{
-                sh 'sudo apt install npm'
-                sh 'npm test'
+        stage("Test") {
+            steps {
+                script {
+                    // Install npm using Jenkins tool directive
+                    tool name: 'npm', type: 'npm'
+                    sh 'npm test'
+                }
             }
         }
 
-        stage("Build"){
-            steps{
-                sh 'npm run build'
+        stage("Build") {
+            steps {
+                script {
+                    // Install npm using Jenkins tool directive
+                    tool name: 'npm', type: 'npm'
+                    sh 'npm run build'
+                }
             }
         }
+    }
+}
